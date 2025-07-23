@@ -9,8 +9,8 @@ from functools import wraps
 SECRET_KEY = 'chave_super_segura_paulo_paula_murilo_williane'
 
 app = Flask(__name__)
-model = load_model('dataset/modelos_api/modelo_obesidade_final.h5')
-scaler = joblib.load('dataset/modelos_api/scaler_obesidade.pkl')
+model = load_model('modelos_api/modelo_obesidade_final.h5')
+scaler = joblib.load('modelos_api/scaler_obesidade.pkl')
 
 # Decorador - verifica token JWT
 def token_required(f):
@@ -56,6 +56,15 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug = True)
+
+
+@app.route('/')
+def home():
+    return '''
+    <h1>API de Previsão de Obesidade</h1>
+    <p>Use os endpoints /login e /predict conforme a documentação.</p>
+    <p>Para mais informações, consulte o README.md.</p>
+    '''
 
 '''
 Para login:
